@@ -75,7 +75,7 @@ if get_option('enable_engine')
     command: [
       python3,
       files('fetch-frida-devkit.py'),
-      '14.2.14',
+      '15.0.8',
       host_os,
       host_arch,
       '@OUTDIR@',
@@ -192,7 +192,7 @@ endif
 
 cycript_shlib_link_args = []
 if host_os_family == 'darwin'
-  cycript_shlib_link_args += '-Wl,-exported_symbols_list,' + join_paths(meson.current_source_dir(), 'libcycript-core.symbols')
+  cycript_shlib_link_args += '-Wl,-exported_symbols_list,' + join_paths(meson.current_source_dir(), 'libcycript-core-@0@.symbols'.format(host_arch))
   if get_option('enable_engine')
     cycript_shlib_link_args += '-Wl,-exported_symbols_list,' + join_paths(meson.current_source_dir(), 'libcycript-engine.symbols')
   endif
